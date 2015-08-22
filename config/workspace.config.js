@@ -3,7 +3,7 @@ module.exports = {
     bundleName: 'mobile2scale',
     libraryName: 'mobile2scale',
     build: {
-        isomorphic: true,
+        isomorphic: false,
         server: {
             compressionLevel: 0,
         },
