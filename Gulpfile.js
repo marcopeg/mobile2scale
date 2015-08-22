@@ -231,10 +231,7 @@ function html4develop() {
             });
         } else {
             _render({
-                settings: appConf,
-                events: [],
-                drafts: [],
-                speakers: []
+                settings: appConf
             }, '');
         }
 

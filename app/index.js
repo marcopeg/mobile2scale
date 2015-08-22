@@ -5,17 +5,17 @@ import React from 'react';
 import { Router, Route } from 'react-router';
 import { reduxRouteComponent } from 'redux-react-router';
 
-import { initStore } from 'app/store';
+import { initStore, getStore } from 'app/store';
+import { initFirebase } from 'app/firebase-service';
 
 import App from 'app/app';
 import Dashboard from 'dashboard/dashboard';
 import Client from 'client/client';
 import Consumer from 'consumer/consumer';
 
-function makeRoutes(initialState) {
-    const store = initStore();
-    const routes = (
-        <Route component={reduxRouteComponent(store)}>
+function makeRoutes() {
+    return (
+        <Route component={reduxRouteComponent(getStore())}>
             <Route component={App}>
                 <Route path="/" component={Client} />
                 <Route path="/dashboard" component={Dashboard} />
@@ -23,28 +23,21 @@ function makeRoutes(initialState) {
             </Route>
         </Route>
     );
-    return [routes, store];
 }
 
-export function start(initialState) {
+export function start(_, fb) {
     var BrowserHistory = require('react-router/lib/BrowserHistory').history;
-    var [routes] = makeRoutes(initialState);
+
+    initStore();
+    initFirebase(fb);
 
     React.render((
         <Router history={BrowserHistory}>
-            {routes}
+            {makeRoutes()}
         </Router>
     ), document.getElementById('app'));
 }
 
 export function renderMarkup(initialState) {
-    var Location = require('react-router/lib/Location');
-    var [routes] = makeRoutes(initialState);
-    var html;
-
-    Router.run(routes, new Location('/'), (err, initialState) => {
-        html = React.renderToString(<Router {...initialState}/>);
-    });
-
-    return html;
+    return '';
 }
