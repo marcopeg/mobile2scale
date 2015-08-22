@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{{ libraryName }}}</title>
+    {{{ css }}}
+</head>
+
+<body>
+
+	<div id="app">{{{ html }}}</div>
+	
+    {{{ js }}}
+
+    <script>
+    	console.log({{{ cfg }}});
+    	{{{ libraryName }}}.start({{{ cfg }}}, new Firebase('{{ firebaseUrl }}'));
+    </script>
+    
+</body>
+</html>
