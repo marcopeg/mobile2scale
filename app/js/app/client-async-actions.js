@@ -8,21 +8,28 @@ import {
     setPendingTickets
 } from './client-actions';
 
+var client, clientId;
+
 export function registerClient() {
     return dispatch => {
         console.log('fb register client');
         
-        var client = getRef().child('clients').push({
+        client = getRef().child('clients').push({
             created: Date.now(),
+            updated: Date.now(),
             pending: 0
         });
 
-        var clientId = client.key();
+        clientId = client.key();
 
         // this never dispose!!!
         client.child('pending').on('value', snap => {
             dispatch(setPendingTickets(snap.val()));
         });
+
+        setInterval($=> {
+            client.child('updated').set(Date.now());
+        }, 1000);
 
         dispatch(setClientId(clientId));
     };
