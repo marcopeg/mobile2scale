@@ -56,7 +56,7 @@ export default class Client extends React.Component {
         return (
             <Grid fluid>
                 <PageHeader>
-                    Super Queue <small>client</small>
+                    Client <small>- Super Queue</small>
                 </PageHeader>                
                 <Row>
                     <Col xs={6}>

@@ -22,14 +22,15 @@ export function registerClient() {
 
         clientId = client.key();
 
-        // this never dispose!!!
-        client.child('pending').on('value', snap => {
-            dispatch(setPendingTickets(snap.val()));
-        });
-
+        // keep the client alive
         setInterval($=> {
             client.child('updated').set(Date.now());
         }, 1000);
+
+        // update pending tickets
+        client.child('pending').on('value', snap => {
+            dispatch(setPendingTickets(snap.val()));
+        });
 
         dispatch(setClientId(clientId));
     };
