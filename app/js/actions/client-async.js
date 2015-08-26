@@ -1,12 +1,12 @@
 
-import { getRef } from './firebase-service';
+import { getRef } from 'services/firebase';
 
 import {
     setClientId, 
     unsetClientId, 
     ticketWasAdded,
     setPendingTickets
-} from './client-actions';
+} from 'actions/client';
 
 var client, clientId;
 

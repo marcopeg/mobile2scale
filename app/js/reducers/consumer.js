@@ -2,7 +2,7 @@
 import {
     SET_PENDING_TICKETS,
     ADD_CONSUMED_TICKET
-} from './consumer-actions';
+} from 'actions/consumer';
 
 var initialState = {
     pendingTickets: 0,

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { changePage } from 'app/actions';
-import Menu from './menu';
+import { changePage } from 'actions/router';
+import Menu from 'components/menu';
 
 @connect(state => state)
 export default class App extends React.Component {

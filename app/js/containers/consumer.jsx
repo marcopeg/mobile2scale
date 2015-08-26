@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
     registerConsumer,
     unregisterConsumer
-} from 'app/consumer-async-actions';
+} from 'actions/consumer-async';
 
 import PageHeader from 'react-bootstrap/lib/PageHeader';
 import Well from 'react-bootstrap/lib/Well';
