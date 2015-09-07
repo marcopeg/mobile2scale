@@ -28,11 +28,11 @@ function makeRoutes() {
     );
 }
 
-export function start(_, fb) {
+export function start(initialState, fb) {
     var BrowserHistory = require('react-router/lib/BrowserHistory').history;
 
-    var store = initStore();
-    initFirebase(fb);
+    var store = initStore(initialState);
+    var fbRef = initFirebase(fb);
 
     var router = (
         <Router history={BrowserHistory}>
@@ -40,16 +40,19 @@ export function start(_, fb) {
         </Router>
     );
 
-    var debug = (
-        <DebugPanel top bottom right>
-            <DevTools store={store} monitor={LogMonitor} />
-        </DebugPanel>
-    );
+    var debug;
+    if (initialState.settings.debugPanel) {
+        debug = (
+            <DebugPanel top bottom right>
+                <DevTools store={store} monitor={LogMonitor} />
+            </DebugPanel>
+        );
+    }
 
     React.render((
         <div>
             {router}
-            {/*debug*/}
+            {debug}
         </div>
     ), document.getElementById('app'));
 }

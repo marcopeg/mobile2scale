@@ -11,5 +11,6 @@
  */
 
 module.exports = {
-    firebaseUrl: 'mobile2scale.firebaseio.com'
+    firebaseUrl: 'mobile2scale.firebaseio.com',
+    debugPanel: false
 };

@@ -5,6 +5,7 @@ var _FB;
 
 export function initFirebase(instance) {
     _FB = instance;
+    return _FB;
 }
 
 export function getRef(path) {
