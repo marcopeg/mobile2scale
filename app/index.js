@@ -5,13 +5,16 @@ import React from 'react';
 import { Router, Route } from 'react-router';
 import { reduxRouteComponent } from 'redux-react-router';
 
-import { initStore, getStore } from 'app/store';
-import { initFirebase } from 'app/firebase-service';
+import { initStore, getStore } from 'services/store';
+import { initFirebase } from 'services/firebase';
 
-import App from 'app/app';
-import Dashboard from 'dashboard/dashboard';
-import Client from 'client/client';
-import Consumer from 'consumer/consumer';
+import App from 'containers/app';
+import Dashboard from 'containers/dashboard';
+import Client from 'containers/client';
+import Consumer from 'containers/consumer';
+
+import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import SliderMonitor from 'redux-slider-monitor';
 
 function makeRoutes() {
     return (
@@ -25,16 +28,32 @@ function makeRoutes() {
     );
 }
 
-export function start(_, fb) {
+export function start(initialState, fb) {
     var BrowserHistory = require('react-router/lib/BrowserHistory').history;
 
-    initStore();
-    initFirebase(fb);
+    var store = initStore(initialState);
+    var fbRef = initFirebase(fb);
 
-    React.render((
+    var router = (
         <Router history={BrowserHistory}>
             {makeRoutes()}
         </Router>
+    );
+
+    var debug;
+    if (initialState.settings.debugPanel) {
+        debug = (
+            <DebugPanel top bottom right>
+                <DevTools store={store} monitor={LogMonitor} />
+            </DebugPanel>
+        );
+    }
+
+    React.render((
+        <div>
+            {router}
+            {debug}
+        </div>
     ), document.getElementById('app'));
 }
 

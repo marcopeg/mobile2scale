@@ -1,10 +1,10 @@
 
-import { getRef } from './firebase-service';
+import { getRef } from 'services/firebase';
 
 import { 
     setPendingTickets,
     addConsumedTicket 
-} from './consumer-actions';
+} from 'actions/consumer';
 
 var consumerId, consumer;
 var timers = [];

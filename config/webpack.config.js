@@ -12,7 +12,7 @@ module.exports = {
         extensions: ['', '.js', '.jsx'],
         modulesDirectories: [
             'node_modules',
-            path.join(__dirname, '..', 'app', 'js'),
+            path.join(__dirname, '..', 'app', 'js')
         ]
     },
     output: {

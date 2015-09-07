@@ -5,7 +5,7 @@ import {
     registerClient, 
     unregisterClient, 
     addTicket 
-} from 'app/client-async-actions';
+} from 'actions/client-async';
 
 import Button from 'react-bootstrap/lib/Button';
 import Well from 'react-bootstrap/lib/Well';

@@ -4,7 +4,7 @@ import {
     UNSET_CLIENT_ID,
     TICKET_WAS_ADDED,
     SET_PENDING_TICKETS
-} from './client-actions';
+} from 'actions/client';
 
 var initialState = {
     clientId: null,
